@@ -1,0 +1,72 @@
+name: pyqt5-runtime 
+version: '5.14' 
+summary: Qt 5.14 full runtime stack with pyqt bindings content snap. 
+description: |
+  This snap is to be consumed by various Qt apps which uses Qt 5.14 .
+  Qt provides C++ classes and QML types for rendering GUI.
+grade: stable 
+confinement: strict 
+base: core18
+
+architectures:
+  - build-on: amd64
+    run-on: amd64
+
+slots: 
+  pyqt5-runtime:
+    interface: content
+    read: 
+      - /
+parts:
+  desktop-qt5:
+     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+     source-subdir: qt
+     plugin: make
+     make-parameters: ["FLAVOR=qt5"]
+     build-packages:
+      - build-essential
+      - qtbase5-dev
+      - dpkg-dev
+     stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt5gui5
+#      - libqt5sql5-sqlite
+#      - libqt5webkit5
+#      - libqt5xml5
+#      - libqt5svg5 
+      - libqt5x11extras5
+      - libqt5waylandclient5
+      - libdb5.3
+      - libgdk-pixbuf2.0-0
+      - try: [appmenu-qt5] # not available on core18
+      - locales-all
+      - xdg-user-dirs
+      - fcitx-frontend-qt5
+      - libglu1-mesa
+      - libslang2
+      - qdbus-qt5
+      - qt5-gtk-platformtheme
+
+  app-depes:
+     plugin: python
+     python-version: python3
+     after: [desktop-qt5]
+     python-packages: 
+        - PyQt5==5.14
+        - requests
+        - cryptography
+           
+  cleanup:
+     after: 
+       - desktop-qt5
+     plugin: nil
+     override-prime: |
+       # Remove unneeded stage files to save space
+       cd usr/share
+       rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
