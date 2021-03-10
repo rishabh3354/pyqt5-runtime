@@ -1,4 +1,4 @@
-name: pyqt5-untime 
+name: pyqt5-runtime 
 version: '18.04' 
 summary: PyQt5 runtime stack based on core18. 
 description: |
