@@ -1,8 +1,8 @@
-name: pyqt5-runtime 
-version: '5.14' 
-summary: Qt 5.14 full runtime stack with pyqt bindings content snap. 
+name: pyqt5-untime 
+version: '18.04' 
+summary: PyQt5 runtime stack based on core18. 
 description: |
-  This snap is to be consumed by various Qt apps which uses Qt 5.14 .
+  This snap is to be consumed by various PyQt5 apps which uses Qt 5.9+.
   Qt provides C++ classes and QML types for rendering GUI.
 grade: stable 
 confinement: strict 
@@ -35,32 +35,14 @@ parts:
       - adwaita-icon-theme
       - gnome-themes-standard
       - shared-mime-info
-      - libqt5gui5
-#      - libqt5sql5-sqlite
-#      - libqt5webkit5
-#      - libqt5xml5
-#      - libqt5svg5 
-      - libqt5x11extras5
-      - libqt5waylandclient5
       - libdb5.3
       - libgdk-pixbuf2.0-0
-      - try: [appmenu-qt5] # not available on core18
       - locales-all
       - xdg-user-dirs
-      - fcitx-frontend-qt5
       - libglu1-mesa
       - libslang2
-      - qdbus-qt5
-      - qt5-gtk-platformtheme
-
-  app-depes:
-     plugin: python
-     python-version: python3
-     after: [desktop-qt5]
-     python-packages: 
-        - PyQt5==5.14
-        - requests
-        - cryptography
+      - python3-pyqt5 #Dist python3 PyQt5 Binding(uses desktop-qt5 .SO's)
+      - qt5-gtk-platformtheme #Platform themes plugin
            
   cleanup:
      after: 
