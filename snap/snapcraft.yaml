@@ -1,5 +1,5 @@
 name: pyqt5-runtime 
-version: '18.04' 
+version: '18.04.1'
 summary: PyQt5 runtime stack based on core18. 
 description: |
   This snap is to be consumed by various PyQt5 apps which uses Qt 5.9+.
@@ -44,7 +44,8 @@ parts:
       - python3-pyqt5 #Dist python3 PyQt5 Binding(uses desktop-qt5 .SO's)
       - qt5-gtk-platformtheme #Platform themes plugin
       - ffmpeg # used by y2mate for merging audio video
-           
+      - mpv # used for play videos and audios
+
   cleanup:
      after: 
        - desktop-qt5
