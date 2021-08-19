@@ -45,6 +45,7 @@ parts:
       - qt5-gtk-platformtheme #Platform themes plugin
       - ffmpeg # used by y2mate for merging audio video
       - mpv # used for play videos and audios
+      - libmsrpc3.so.0
 
   cleanup:
      after: 
