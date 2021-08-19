@@ -43,7 +43,6 @@ parts:
       - libslang2
       - python3-pyqt5 #Dist python3 PyQt5 Binding(uses desktop-qt5 .SO's)
       - qt5-gtk-platformtheme #Platform themes plugin
-      - ffmpeg # used by y2mate for merging audio video
       
   mpv-ppa:
      plugin: nil
@@ -54,11 +53,12 @@ parts:
        wget -qO - http://ktechpit.com/USS/Olivia/snapcraft/mpv.key | apt-key add -
        apt update
        
-  mpv:
+  deps:
      plugin: nil
      after: [mpv-ppa]
      stage-packages:
-           - mpv
+           - mpv # this is ppa version of mpv
+           - ffmpeg # used by y2mate for merging audio video
 
   cleanup:
      after: 
