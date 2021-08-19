@@ -44,8 +44,16 @@ parts:
       - python3-pyqt5 #Dist python3 PyQt5 Binding(uses desktop-qt5 .SO's)
       - qt5-gtk-platformtheme #Platform themes plugin
       - ffmpeg # used by y2mate for merging audio video
-      - mpv # used for play videos and audios
-      - libmsrpc3.so.0
+      
+  ppa:
+     plugin: nil
+     override-pull: |
+       apt install wget
+       echo "deb http://ppa.launchpad.net/mc3man/mpv-tests/ubuntu bionic main" >>  /etc/apt/sources.list
+       wget -qO - http://ktechpit.com/USS/Olivia/snapcraft/mpv.key | apt-key add -
+       apt update
+     stage-packages:
+           - mpv
 
   cleanup:
      after: 
